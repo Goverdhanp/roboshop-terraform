@@ -26,7 +26,7 @@ resource "null_resource" "mongodb" {
         type     = "ssh"
         user     = "ec2-user"
         password = "DevOps321"
-        host     = self.public_ip
+        host     = aws_instance.mongodb.private_ip
     }
 
     inline = [

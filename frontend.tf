@@ -25,7 +25,7 @@ resource "null_resource" "frontend"{
         type     = "ssh"
         user     = "ec2-user"
         password = "DevOps321"
-        host     = self.public_ip
+        host     = aws_instance.frontend.private_ip
     }
 
     inline = [
