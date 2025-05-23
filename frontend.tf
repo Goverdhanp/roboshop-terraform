@@ -9,7 +9,7 @@ resource "aws_instance" "frontend" {
 }
 
 
-provisioner "remote-exec" {
+  provisioner "frontend" {
     connection {
     type     = "ssh"
     user     = "ec2-user"

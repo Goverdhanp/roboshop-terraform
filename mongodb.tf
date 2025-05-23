@@ -8,7 +8,7 @@ resource "aws_instance" "mongodb" {
   }
 
 
-provisioner "remote-exec" {
+provisioner "mongodb" {
     connection {
     type     = "ssh"
     user     = "ec2-user"
