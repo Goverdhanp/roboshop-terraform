@@ -7,7 +7,7 @@ resource "aws_instance" "catalogue" {
     Name = "catalogue"
   }
 
-  provisioner "catalogue" {
+  provisioner "remote-exec" {
     connection {
     type     = "ssh"
     user     = "ec2-user"

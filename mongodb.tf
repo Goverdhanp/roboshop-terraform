@@ -8,13 +8,13 @@ resource "aws_instance" "mongodb" {
   }
 
 
-provisioner "mongodb" {
+ provisioner "remote-exec" {
     connection {
     type     = "ssh"
     user     = "ec2-user"
     password = "DevOps321"
     host     = self.public_ip
-}
+  }
 
 provisioner "remote-exec" {
     inline = [
