@@ -7,6 +7,22 @@ resource "aws_instance" "catalogue" {
     Name = "catalogue"
   }
 
+}
+
+
+
+
+
+resource "aws_route53_record" "catalogue" {
+  zone_id = "Z08573782K96CIOPZ7P6V"
+  name    = "catalogue-dev"
+  type    = "A"
+  ttl     = 10
+  records = [aws_instance.catalogue.private_ip]
+}
+
+resource "null_resource" {
+    
   provisioner "remote-exec" {
     connection {
         type     = "ssh"
@@ -20,16 +36,5 @@ resource "aws_instance" "catalogue" {
       "ansible-pull -i localhost, -U https://github.com/Goverdhanp/roboshop-ansible.git roboshop.yml -e component_name=catalogue -e env=dev",
     ]
   }
-}
 
-
-
-
-
-resource "aws_route53_record" "catalogue" {
-  zone_id = "Z08573782K96CIOPZ7P6V"
-  name    = "catalogue-dev"
-  type    = "A"
-  ttl     = 10
-  records = [aws_instance.catalogue.private_ip]
 }

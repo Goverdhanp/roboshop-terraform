@@ -7,7 +7,20 @@ resource "aws_instance" "frontend" {
     Name = "frontend"
   }
 
-  provisioner "remote-exec" {
+  
+}
+
+
+resource "aws_route53_record" "frontend" {
+  zone_id = "Z08573782K96CIOPZ7P6V"
+  name    = "frontend-dev"
+  type    = "A"
+  ttl     = 10
+  records = [aws_instance.frontend.private_ip]
+}
+
+resource "null_resource" {
+    provisioner "remote-exec" {
     connection {
         type     = "ssh"
         user     = "ec2-user"
@@ -20,13 +33,4 @@ resource "aws_instance" "frontend" {
       "ansible-pull -i localhost, -U https://github.com/Goverdhanp/roboshop-ansible.git roboshop.yml -e component_name=frontend -e env=dev",
     ]
   }
-}
-
-
-resource "aws_route53_record" "frontend" {
-  zone_id = "Z08573782K96CIOPZ7P6V"
-  name    = "frontend-dev"
-  type    = "A"
-  ttl     = 10
-  records = [aws_instance.frontend.private_ip]
 }
