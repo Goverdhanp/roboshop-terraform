@@ -21,7 +21,7 @@ resource "aws_route53_record" "catalogue" {
   records = [aws_instance.catalogue.private_ip]
 }
 
-resource "null_resource" {
+resource "null_resource" "catalogue" {
     
   provisioner "remote-exec" {
     connection {

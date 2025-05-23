@@ -19,7 +19,7 @@ resource "aws_route53_record" "frontend" {
   records = [aws_instance.frontend.private_ip]
 }
 
-resource "null_resource" {
+resource "null_resource" "frontend"{
     provisioner "remote-exec" {
     connection {
         type     = "ssh"
