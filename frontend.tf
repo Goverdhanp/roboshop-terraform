@@ -21,11 +21,11 @@ resource "aws_route53_record" "frontend" {
 
 resource "null_resource" "frontend"{
     provisioner "remote-exec" {
-    connection {
-        type     = "ssh"
-        user     = "ec2-user"
-        password = "DevOps321"
-        host     = aws_instance.frontend.private_ip
+        connection {
+            type     = "ssh"
+            user     = "ec2-user"
+            password = "DevOps321"
+            host     = aws_instance.frontend.private_ip
     }
 
     inline = [

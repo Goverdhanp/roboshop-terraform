@@ -22,11 +22,11 @@ resource "aws_route53_record" "mongodb" {
 
 resource "null_resource" "mongodb" {
     provisioner "remote-exec" {
-    connection {
-        type     = "ssh"
-        user     = "ec2-user"
-        password = "DevOps321"
-        host     = aws_instance.mongodb.private_ip
+        connection {
+            type     = "ssh"
+            user     = "ec2-user"
+            password = "DevOps321"
+            host     = aws_instance.mongodb.private_ip
     }
 
     inline = [
