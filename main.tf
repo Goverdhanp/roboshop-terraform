@@ -11,7 +11,6 @@ resource "aws_instance" "instance" {
 
 }
 
-
 resource "aws_route53_record" "catalogue" {
   count = length(var.instances)
   zone_id = var.zone_id
