@@ -13,7 +13,7 @@ resource "aws_instance" "instance" {
 }
 
 resource "aws_route53_record" "catalogue" {
-  for_each= var.instances
+  for_each= toset(var.instances)
   zone_id = var.zone_id
   name    = "${each.key}-${var.env}"
   type    = "A"
