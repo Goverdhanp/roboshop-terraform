@@ -12,9 +12,10 @@ variable "vpc_security_group_ids"{
 
 variable "instances"{
     default= [
-        "catalogue",
-        "frontend",
-        "mongodb"
+        catalogue=null
+        mongodb=null
+        frontend=null
+
     ]
 }
 
