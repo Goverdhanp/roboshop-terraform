@@ -18,7 +18,7 @@ resource "aws_route53_record" "catalogue" {
   name    = "${var.instances[each.key]}-${var.env}"
   type    = "A"
   ttl     = 10
-  records = [aws_instance.instance[each.key].private_ip]
+  records = [aws_instance.instances[each.key].private_ip]
 }
 
  
