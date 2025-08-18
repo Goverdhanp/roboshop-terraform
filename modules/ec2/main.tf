@@ -1,5 +1,5 @@
 module "ec2"{
-    for_each= var.instances
+    for_each= var.instance
     source="./modules/ec2"
     
     ami_id= each.value["ami_id]
