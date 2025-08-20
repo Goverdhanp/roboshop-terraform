@@ -1,4 +1,4 @@
-instance = {
+instances = {
         frontend={
             ami_id = "ami-09c813fb71547fc4f"
             instance_type = "t3.small"
@@ -11,11 +11,41 @@ instance = {
             ami_id = "ami-09c813fb71547fc4f"
             instance_type = "t3.small"
         }
+        redis={
+            ami_id = "ami-09c813fb71547fc4f"
+            instance_type = "t3.small"
+        }
+        cart={
+            ami_id = "ami-09c813fb71547fc4f"
+            instance_type = "t3.small"
+        }
+        user={
+            ami_id = "ami-09c813fb71547fc4f"
+            instance_type = "t3.small"
+        }
+        shipping={
+            ami_id = "ami-09c813fb71547fc4f"
+            instance_type = "t3.small"
+        }
+        mysql={
+            ami_id = "ami-09c813fb71547fc4f"
+            instance_type = "t3.small"
+        }
+        rabitmq={
+            ami_id = "ami-09c813fb71547fc4f"
+            instance_type = "t3.small"
+        }
+        payment={
+            ami_id = "ami-09c813fb71547fc4f"
+            instance_type = "t3.small"
+        }
+        
+
 }
 
 
 zone_id = "Z08573782K96CIOPZ7P6V"
 
-vpc_security_group_id = ["sg-0c433bcccf94c7d36"]
+vpc_security_group_ids = ["sg-0c433bcccf94c7d36"]
 
 env="dev"

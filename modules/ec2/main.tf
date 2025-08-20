@@ -1,15 +1,31 @@
-module "ec2"{
-    for_each= var.instance
-    source="./modules/ec2"
-    
-    ami_id= each.value["ami_id]
-    env=var.env
-    instance_type=each.value["instance_type]
-    name= each.key[]
-    vpc_security_group_ids=var.vpc_security_group_ids
-    zone_id=var.zone_id
-
+resource "aws_instance" "instance"{
 
 }
 
+resource "aws_route53_record" "record"{
+    zone_id =var.zone_id
+    name= "${var.name}-${var.env}"
+    type = "A"
+    ttl= 10
+    records=[aws_instance.instance.private_ip]
+}
+
+resource "null_resource" "catalogue"{
+
+    provisioner "remote-exec{
+        connection{
+            type = "ssh"
+            user= "ec2-user"
+            password= "DevOPS321"
+            host= aws_instance.instance.private_ip
+        }
+
+        inline= [
+            "sudo pip3.11 install ansible".
+            "ansible-pull -i localhost, -U https://github.com/raghudvopsb83/roboshop-ansible roboshop.yml -e component_name=$(var.name) -e env=$(var.env)",
+
+        ]
+
+    }
+}
 
