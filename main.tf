@@ -1,23 +1,11 @@
-resource "aws_instance" "instance" {
-  ami           = var.ami_id
-  instance_type = var.instance_type
-  vpc_security_group_id = var.vpc_security_group_id
-  
+module "ec2" {
+  for_each = var.instances
+  source   = "./modules/ec2"
 
-  tags = {
-    name = var.name
-      
-  }
-
+  ami_id                 = each.value["ami_id"]
+  env                    = var.env
+  instance_type          = each.value["instance_type"]
+  name                   = each.key
+  vpc_security_group_ids = var.vpc_security_group_ids
+  zone_id                = var.zone_id
 }
-
-resource "aws_route53_record" "record" {
-  for_each= var.instance
-  zone_id = var.zone_id
-  name    = "${var.name}-${var.env}"
-  type    = "A"
-  ttl     = 10
-  records = [aws_instance.instance.private_ip]
-}
-
- 
