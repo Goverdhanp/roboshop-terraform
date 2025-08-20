@@ -1,7 +1,3 @@
-terraform {
-  backend "s3" {
-    bucket = "terraform-new83"
-    key    = "path/to/my/key"
-    region = "us-east-1"
-  }
-}
+bucket = "terraform-b83"
+key    = "env-dev/state"
+region = "us-east-1"
